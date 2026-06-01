@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<%- include('header') %>
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+        <h2 class="text-center mb-4">Edit Book</h2>
+
+        <form action="/update/<%= book._id %>" method="POST" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label class="form-label">Book Title</label>
+                <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    value="<%= book.title %>"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Author Name</label>
+                <input
+                    type="text"
+                    name="author"
+                    class="form-control"
+                    value="<%= book.author %>"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <input
+                    type="text"
+                    name="category"
+                    class="form-control"
+                    value="<%= book.category %>"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Price (₹)</label>
+                <input
+                    type="number"
+                    name="price"
+                    class="form-control"
+                    value="<%= book.price %>"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <input
+                    type="number"
+                    name="quantity"
+                    class="form-control"
+                    value="<%= book.quantity %>"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea
+                    name="description"
+                    class="form-control"
+                    rows="4"
+                    required><%= book.description %></textarea>
+            </div>
+
+            <% if(book.image){ %>
+                <div class="mb-3">
+                    <label class="form-label">Current Image</label><br>
+
+                    <img
+                        src="/uploads/<%= book.image %>"
+                        width="120"
+                        class="img-thumbnail">
+                </div>
+            <% } %>
+
+            <div class="mb-3">
+                <label class="form-label">Change Image</label>
+                <input
+                    type="file"
+                    name="image"
+                    class="form-control"
+                    accept="image/*">
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">
+                    Update Book
+                </button>
+
+                <a href="/view" class="btn btn-secondary">
+                    Back
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<%- include('footer') %>    
+</body>
+</html>
